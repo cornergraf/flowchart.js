@@ -17,6 +17,16 @@ function Condition(chart, options) {
   } else if (!this.yes_direction && this.no_direction === 'bottom') {
     this.yes_direction = 'right'
   }
+  
+  let used_directions = [this.no_direction, this.yes_direction];
+  
+  if (!used_directions.contains('right')
+      this.third_direction = 'right';
+  if (!used_directions.contains('bottom')
+      this.third_direction = 'bottom';
+  if (!used_directions.contains('left')
+      this.third_direction = 'left';  
+  
   this.yes_direction = this.yes_direction || 'bottom';
   this.no_direction = this.no_direction || 'right';
   
