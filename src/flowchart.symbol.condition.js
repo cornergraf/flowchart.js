@@ -11,6 +11,7 @@ function Condition(chart, options) {
   this.textMargin = this.getAttr('text-margin');
   this.yes_direction = options.direction_yes;
   this.no_direction = options.direction_no;
+  this.third_direction = options.direction_third;
   if (!this.no_direction && this.yes_direction === 'right') {
     this.no_direction = 'bottom';
   } else if (!this.yes_direction && this.no_direction === 'bottom') {
@@ -18,6 +19,7 @@ function Condition(chart, options) {
   }
   this.yes_direction = this.yes_direction || 'bottom';
   this.no_direction = this.no_direction || 'right';
+  
 
   this.text.attr({
     x: this.textMargin * 2
@@ -76,6 +78,10 @@ Condition.prototype.render = function() {
 
   if (this.no_direction) {
     this[this.no_direction + '_symbol'] = this.no_symbol;
+  }
+  
+  if (this.third_direction) {
+    this[this.third_direction + '_symbol'] = this.third_symbol;
   }
 
   var lineLength = this.getAttr('line-length');
@@ -171,6 +177,10 @@ Condition.prototype.renderLines = function() {
 
   if (this.no_symbol) {
     this.drawLineTo(this.no_symbol, this.no_annotation ? this.no_annotation : this.getAttr('no-text'), this.no_direction);
+  }
+  
+  if (this.third_symbol) {
+    this.drawLineTo(this.third_symbol, this.third_annotation ? this.third_annotation : this.getAttr('third-text'), this.third_direction);
   }
 };
 
